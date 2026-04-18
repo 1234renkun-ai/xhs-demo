@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>小红书决策助手 Demo</title>
+  <style>
+    body {
+      font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 0 20px;
+      background: #f7f7f7;
+      color: #222;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      margin-bottom: 24px;
+      font-size: 28px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    input {
+      flex: 1;
+      min-width: 260px;
+      padding: 14px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    button {
+      padding: 14px 20px;
+      background: #ff2442;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.92;
+    }
+
+    .card {
+      margin-top: 24px;
+      padding: 20px;
+      border: 1px solid #eee;
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #ff2442;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      background: #fff1f3;
+      color: #ff2442;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    ul {
+      padding-left: 20px;
+      line-height: 1.8;
+    }
+
+    p {
+      line-height: 1.8;
+    }
+
+    .empty-tip {
+      margin-top: 18px;
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>小红书决策助手 Demo</h2>
+
+    <div class="input-row">
+      <input id="keyword" placeholder="输入你想了解的内容，比如：火锅 / 防晒 / 咖啡店" />
+      <button onclick="generate()">生成建议</button>
+    </div>
+
+    <div class="empty-tip">这个 Demo 模拟的是“结构化决策视图”，帮助用户更快完成内容筛选和判断。</div>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function generate() {
+      const keyword = document.getElementById("keyword").value.trim();
+      const result = document.getElementById("result");
+
+      if (!keyword) {
+        result.innerHTML = `
+          <div class="card">
+            <p>请先输入一个关键词，例如“火锅”或“防晒”。</p>
+          </div>
+        `;
+        return;
+      }
+
+      result.innerHTML = `
+        <div class="card">
+          <h3>${keyword} 决策总结</h3>
+          <div>
+            <span class="tag">真实分享</span>
+            <span class="tag">快速判断</span>
+            <span class="tag">结构化信息</span>
+          </div>
+
+          <p>基于用户笔记和常见反馈，这类内容整体讨论度较高，适合在做消费或出行决策前快速参考。</p>
+
+          <h4>优点</h4>
+          <ul>
+            <li>能快速看到不同用户的真实体验</li>
+            <li>信息更生活化，决策门槛低</li>
+            <li>适合用来做“值不值得”“要不要买”的初步判断</li>
+          </ul>
+
+          <h4>可能的问题</h4>
+          <ul>
+            <li>信息分散，需要自己从多篇笔记里总结</li>
+            <li>部分内容带有明显主观感受</li>
+          </ul>
+
+          <h4>适合人群</h4>
+          <p>想快速获得参考意见、减少筛选成本、提高决策效率的用户。</p>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
